@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>P007-A — Ecommerce Profitability & Promotion Decision Lab</title>
+  <meta name="description" content="Deterministic ecommerce promotion contribution decision-support demo using user-supplied assumptions.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="hero">
+      <div class="eyebrow">P007-A · Ecommerce Profitability & Promotion Decision Lab</div>
+      <h1>Which promotion improves contribution — and what volume change does it require?</h1>
+      <p class="lede">Model promotion economics using your own assumptions. No demand prediction.</p>
+      <div class="evidence-grid" aria-label="Evidence boundary">
+        <div class="evidence primary">REAL WORKING PUBLIC PROJECT / PUBLIC-SAFE DEMO DATA / NOT CLIENT RESULT</div>
+        <div class="evidence">SYNTHETIC DEMO — NOT CLIENT DATA</div>
+      </div>
+    </header>
+
+    <section class="panel" aria-labelledby="baseline-title">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">1 · Baseline economics</p>
+          <h2 id="baseline-title">Current unit economics</h2>
+        </div>
+        <div class="inline-controls">
+          <label>Currency
+            <select id="currency">
+              <option value="USD">USD</option>
+              <option value="GBP">GBP</option>
+              <option value="EUR">EUR</option>
+            </select>
+          </label>
+          <label>Analysis period
+            <input id="period" type="text" value="Month" maxlength="32">
+          </label>
+        </div>
+      </div>
+
+      <div id="baseline-inputs" class="input-grid"></div>
+      <div class="microcopy">Currency is display-only; no FX conversion is performed. Taxes/VAT are outside Slice 1.</div>
+
+      <div id="errors" class="error-box" role="alert" aria-live="polite" hidden></div>
+      <div id="baseline-warnings" class="warning-box" aria-live="polite" hidden></div>
+
+      <div id="baseline-cards" class="metric-grid" aria-live="polite"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="scenario-title">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">2 · Promotion scenarios</p>
+          <h2 id="scenario-title">Compare 2–4 scenarios</h2>
+        </div>
+        <button id="add-scenario" class="button secondary" type="button">Add scenario</button>
+      </div>
+      <p class="assumption-callout"><strong>ASSUMPTIONS, NOT PREDICTIONS:</strong> promotion adoption and expected order change are values you supply. The tool does not infer customer behaviour.</p>
+      <div id="scenario-editor" class="scenario-editor"></div>
+    </section>
+
+    <section id="results" class="panel" aria-labelledby="comparison-title">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">3 · Scenario comparison</p>
+          <h2 id="comparison-title">Contribution-first comparison</h2>
+        </div>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Scenario</th>
+              <th>Expected orders</th>
+              <th>Revenue/order</th>
+              <th>Contribution/order</th>
+              <th>Total contribution</th>
+              <th>Delta vs baseline</th>
+              <th>Discount amount</th>
+              <th>Break-even order change</th>
+            </tr>
+          </thead>
+          <tbody id="comparison-body"></tbody>
+        </table>
+      </div>
+      <p class="microcopy">Discount amount is revenue discounted on promoted orders, not a full economic cost.</p>
+    </section>
+
+    <section id="summary-panel" class="panel accent-panel" aria-labelledby="summary-title">
+      <p class="section-kicker">4 · Current model readout</p>
+      <h2 id="summary-title">Conditional summary</h2>
+      <div id="summary"></div>
+    </section>
+
+    <section id="sensitivity-panel" class="panel" aria-labelledby="sensitivity-title">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">5 · Sensitivity</p>
+          <h2 id="sensitivity-title">Order-change sensitivity</h2>
+        </div>
+        <label>Scenario
+          <select id="sensitivity-select"></select>
+        </label>
+      </div>
+      <p class="microcopy">Rows show model outputs at supplied order-change assumptions. No behavioural probability is inferred.</p>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Order change</th>
+              <th>Scenario orders</th>
+              <th>Total units</th>
+              <th>Total revenue</th>
+              <th>Total contribution</th>
+              <th>Delta vs baseline</th>
+            </tr>
+          </thead>
+          <tbody id="sensitivity-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel limitations" aria-labelledby="limits-title">
+      <p class="section-kicker">6 · Assumptions + limitations</p>
+      <h2 id="limits-title">What this model does — and does not — establish</h2>
+      <div class="limit-grid">
+        <div><strong>User assumptions</strong><span>Adoption and order change are supplied assumptions, not predictions.</span></div>
+        <div><strong>Single representative SKU</strong><span>Slice 1 uses the same unit economics across regular and promoted orders.</span></div>
+        <div><strong>No demand prediction</strong><span>No sales uplift, conversion response or customer behaviour is inferred.</span></div>
+        <div><strong>No hidden benchmarks</strong><span>Only values entered in this page are used.</span></div>
+        <div><strong>No tax / VAT model</strong><span>Tax logic, multi-SKU mix and inventory constraints are outside this slice.</span></div>
+        <div><strong>No platform integration</strong><span>No Shopify, Etsy, Amazon, analytics, login, backend or store connector.</span></div>
+        <div><strong>No client result</strong><span>Demo values are synthetic and do not represent a client engagement or historical ROI.</span></div>
+        <div><strong>No production reliability claim</strong><span>This is a bounded static decision-support proof, not a production service.</span></div>
+      </div>
+      <div class="boundary-note">DEVELOPMENT CHECKS ONLY — NOT INDEPENDENT VALIDATION OR COMMERCIAL PERFORMANCE EVIDENCE</div>
+    </section>
+  </main>
+
+  <script src="model.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
